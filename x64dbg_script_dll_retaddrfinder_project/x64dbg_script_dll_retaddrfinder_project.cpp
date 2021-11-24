@@ -12,13 +12,11 @@ extern "C" X64DBGSCRIPTDLLRETADDRFINDERPROJECT_API void Start() {
 	STACK_COMMENT comment;
 	DbgStackCommentGet(addr, &comment);
 
-	
-	duint sp = 0x1234, size = 0;
-	duint base = DbgMemFindBaseAddr(sp, &size);
-
-
 	HANDLE hActiveThread = DbgGetThreadHandle();
 	duint csp = GetContextDataEx(hActiveThread, UE_CSP);
+
+	duint size;
+	duint base = DbgMemFindBaseAddr(csp, &size);
 
 	DWORD tid = DbgGetThreadId();
 }
